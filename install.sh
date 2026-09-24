@@ -87,6 +87,7 @@ Icon=web-browser
 Terminal=false
 StartupNotify=true
 StartupWMClass=org.hue.huebrowser
+MimeType=text/html;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
 Categories=Network;WebBrowser;
 EOF
 
