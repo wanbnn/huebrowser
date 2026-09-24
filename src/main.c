@@ -299,6 +299,11 @@ activate(GtkApplication *app, gpointer data)
     WebKitWebsiteDataManager *manager = webkit_website_data_manager_new(
         "base-data-directory", data_dir, "base-cache-directory", cache_dir, NULL);
     browser->context = webkit_web_context_new_with_website_data_manager(manager);
+    WebKitCookieManager *cookie_manager = webkit_web_context_get_cookie_manager(browser->context);
+    gchar *cookie_file = g_build_filename(data_dir, "cookies.sqlite", NULL);
+    webkit_cookie_manager_set_persistent_storage(
+        cookie_manager, cookie_file, WEBKIT_COOKIE_PERSISTENT_STORAGE_SQLITE);
+    g_free(cookie_file);
     g_object_unref(manager);
     g_free(data_dir);
     g_free(cache_dir);

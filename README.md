@@ -12,6 +12,14 @@ WebKitGTK mantém regras de compatibilidade de user-agent para sites conhecidos 
 
 2 GB é o alvo mínimo para abrir o navegador e usar páginas leves, preferencialmente com poucas abas. Não é uma garantia de que qualquer site moderno, vídeo ou quantidade de abas funcione sem pressão de memória: páginas web variam muito e podem consumir mais RAM do que o próprio navegador. A opção **Carregar imagens** pode reduzir tráfego e memória de páginas com muitas imagens. Em máquinas de 2 GB, use poucas abas e mantenha swap habilitada.
 
+## Perfil e logins
+
+O Hue Browser guarda os dados dos sites e os cookies persistentes no perfil
+`~/.local/share/hue-browser`. Assim, logins que os próprios sites permitem
+manter entre reinicializações continuam disponíveis ao fechar e abrir o
+navegador. Sites que usam cookies estritamente temporários ou invalidam sessões
+no servidor ainda podem pedir login novamente.
+
 ## Dependências e compilação
 
 No Debian 13:
