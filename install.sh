@@ -72,7 +72,30 @@ cmake -S "$SOURCE_DIR" -B "$BUILD_DIR" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTAL
 cmake --build "$BUILD_DIR" --parallel "${JOBS:-2}"
 cmake --install "$BUILD_DIR"
 
+APPLICATIONS_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/applications"
+mkdir -p "$APPLICATIONS_DIR"
+DESKTOP_EXEC=$(printf '%s' "$PREFIX/bin/hue-browser" | sed 's/\\/\\\\/g; s/"/\\"/g; s/%/%%/g')
+cat > "$APPLICATIONS_DIR/hue-browser.desktop" <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Hue Browser
+GenericName=Web Browser
+Comment=Navegador leve baseado em WebKitGTK
+Exec="$DESKTOP_EXEC"
+Icon=web-browser
+Terminal=false
+StartupNotify=true
+StartupWMClass=org.hue.huebrowser
+Categories=Network;WebBrowser;
+EOF
+
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database "$APPLICATIONS_DIR" >/dev/null 2>&1 || true
+fi
+
 printf '\nInstalação concluída: %s/bin/hue-browser\n' "$PREFIX"
+printf 'Atalho do menu criado: %s/hue-browser.desktop\n' "$APPLICATIONS_DIR"
 case ":${PATH}:" in
     *":$PREFIX/bin:"*) ;;
     *) printf 'Adicione ao PATH se necessário: export PATH="%s/bin:$PATH"\n' "$PREFIX" ;;

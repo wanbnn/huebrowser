@@ -33,7 +33,7 @@ No checkout local, rode:
 sh install.sh
 ```
 
-O script instala as dependências de compilação pelo `apt`, compila uma versão Release e instala o executável em `~/.local/bin/hue-browser`. Se as dependências ainda não estiverem instaladas, ele usa `sudo` e poderá pedir sua senha.
+O script instala as dependências de compilação pelo `apt`, compila uma versão Release e instala o executável em `~/.local/bin/hue-browser`. Também cria `~/.local/share/applications/hue-browser.desktop` para o Hue Browser aparecer no menu de aplicativos. Se as dependências ainda não estiverem instaladas, ele usa `sudo` e poderá pedir sua senha.
 
 Depois que este projeto estiver publicado no GitHub, o comando remoto será:
 
